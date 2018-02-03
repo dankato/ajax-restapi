@@ -42,4 +42,22 @@ $(function() {
       }
     })
   })
+
+  // update/put
+  $('table').on('click', '.update-button', function() {
+    const rowElement = $(this).closest('tr');
+    const id = rowElement.find('.id').text();
+    const newName = rowElement.find('.name').val();
+
+    $.ajax({
+      url: '/products/' + id,
+      method: 'PUT',
+      contentType: 'application/json',
+      data: JSON.stringify({ newName: newName }),
+      success: function(response) {
+        console.log(response);
+        $('#get-button').click();
+      }
+    });
+  });
 });
