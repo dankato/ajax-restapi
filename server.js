@@ -47,6 +47,17 @@ app.put('/products/:id', function(req, res) {
 
 });
 
+app.delete('/products/:id', function(req, res) {
+  const id = req.params.id;
+  let found = false;
+  products.forEach(function(product, index) {
+    if(!found && product.id === Number(id)) {
+      products.splice(index, 1);
+    }
+  });
+  res.send('Successfully deleted product.');
+})
+
 app.listen(PORT, function() {
   console.log('Server listening on ', PORT);
 });

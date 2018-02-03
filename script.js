@@ -60,4 +60,20 @@ $(function() {
       }
     });
   });
+
+  // delete
+  $('table').on('click', '.delete-button', function() {
+    const rowElement = $(this).closest('tr');
+    const id = rowElement.find('.id').text();
+    $.ajax({
+      url: '/products/' + id,
+      method:'DELETE',
+      contentType: 'application/json',
+      success: function(response) {
+        console.log(response);
+        $('#get-button').click();
+      }
+    });
+  });
+
 });
